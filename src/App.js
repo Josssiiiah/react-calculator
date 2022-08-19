@@ -134,7 +134,6 @@ function evaluate({ currentOperand, previousOperand, operation }) {
       break;
   }
   return computation.toString();
-  
 }
 
 // Adds commas to large number
@@ -197,8 +196,9 @@ function App() {
         className="span-two"
         onClick={() => {
           dispatch({ type: ACTIONS.EVALUATE });
-          setText(ACTIONS.EVALUATE);
-          handleOnCLick()
+
+          setText(currentOperand);
+          handleOnCLick();
         }}
       >
         =
