@@ -12,6 +12,8 @@ export const ACTIONS = {
   EVALUATE: "evaluate",
 };
 
+let result = "hi";
+
 function reducer(state, { type, payload }) {
   switch (type) {
     // ADD DIGITS
@@ -103,6 +105,8 @@ function reducer(state, { type, payload }) {
         return state;
       }
 
+      // Otherwise return the state, refresh the values, and update currentOperand to the result
+      result = evaluate(state);
       return {
         ...state,
         overwrite: true,
@@ -133,6 +137,7 @@ function evaluate({ currentOperand, previousOperand, operation }) {
       computation = prev / current;
       break;
   }
+
   return computation.toString();
 }
 
@@ -155,10 +160,6 @@ function App() {
 
   const [text, setText] = useState("");
   const { speak } = useSpeechSynthesis();
-
-  const handleOnCLick = () => {
-    speak({ text: text });
-  };
 
   return (
     <div className="calculator-grid">
@@ -196,9 +197,9 @@ function App() {
         className="span-two"
         onClick={() => {
           dispatch({ type: ACTIONS.EVALUATE });
-
-          setText(currentOperand);
-          handleOnCLick();
+          setText(result);
+          console.log(result);
+          speak({ text: text });
         }}
       >
         =
