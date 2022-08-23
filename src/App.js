@@ -12,7 +12,7 @@ export const ACTIONS = {
   EVALUATE: "evaluate",
 };
 
-let result = "hi";
+let result = "";
 
 function reducer(state, { type, payload }) {
   switch (type) {
@@ -204,6 +204,9 @@ function App() {
       >
         =
       </button>
+      <div classname = "results">
+        <button>Read Results</button>
+      </div>
     </div>
   );
 }
